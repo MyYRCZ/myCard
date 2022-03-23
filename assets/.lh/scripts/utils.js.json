@@ -1,0 +1,30 @@
+{
+    "sourceFile": "scripts/utils.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1646303448976,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646303711646,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -37,8 +37,12 @@\n         for (let key in obj) {\r\n             return false;\r\n         }\r\n         return true;\r\n-    }\r\n+    },\r\n+\r\n+    isFunction = function (value) {\r\n+        return typeof value === \"function\";\r\n+    },\r\n };\r\n \r\n module.exports = Util;\n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646304923347,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -4,9 +4,9 @@\n             callback.apply(null, Array.prototype.slice.call(arguments, 1));\r\n         }\r\n     },\r\n \r\n-    type = function (obj) {\r\n+    type : function (obj) {\r\n         let toString = Object.prototype.toString;\r\n         let types = {\r\n             \"undefined\": \"undefined\",\r\n             \"number\": \"number\",\r\n@@ -21,16 +21,16 @@\n \r\n         return types[typeof obj] || types[toString.call(obj)] || (obj ? \"object\" : null);\r\n     },\r\n     \r\n-    isObject = function (obj) {\r\n+    isObject : function (obj) {\r\n        if (this.type(obj) === \"object\") {\r\n            return true;\r\n        }\r\n        return false;\r\n     },\r\n \r\n-    isEmptyObject = function (obj) {\r\n+    isEmptyObject : function (obj) {\r\n         if(!this.isObject(obj)) {\r\n             return false;\r\n         }\r\n \r\n@@ -39,9 +39,9 @@\n         }\r\n         return true;\r\n     },\r\n \r\n-    isFunction = function (value) {\r\n+    isFunction : function (value) {\r\n         return typeof value === \"function\";\r\n     },\r\n };\r\n \r\n"
+                },
+                {
+                    "date": 1646305275364,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -42,7 +42,9 @@\n \r\n     isFunction : function (value) {\r\n         return typeof value === \"function\";\r\n     },\r\n+\r\n+    // isNull : function ()\r\n };\r\n \r\n module.exports = Util;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1646303448976,
+            "name": "Commit-0",
+            "content": "var Util = {\r\n    invokeCallback: function (callback) {\r\n        if (!!callback && typeof callback === \"function\") {\r\n            callback.apply(null, Array.prototype.slice.call(arguments, 1));\r\n        }\r\n    },\r\n\r\n    type = function (obj) {\r\n        let toString = Object.prototype.toString;\r\n        let types = {\r\n            \"undefined\": \"undefined\",\r\n            \"number\": \"number\",\r\n            \"boolean\": \"boolean\",\r\n            \"string\": \"string\",\r\n            \"[object Function]\": \"function\",\r\n            \"[object RegExp]\": \"regexp\",\r\n            \"[object Array]\": \"array\",\r\n            \"[object Date]\": \"date\",\r\n            \"[object Error]\": \"error\"\r\n        };\r\n\r\n        return types[typeof obj] || types[toString.call(obj)] || (obj ? \"object\" : null);\r\n    },\r\n    \r\n    isObject = function (obj) {\r\n       if (this.type(obj) === \"object\") {\r\n           return true;\r\n       }\r\n       return false;\r\n    },\r\n\r\n    isEmptyObject = function (obj) {\r\n        if(!this.isObject(obj)) {\r\n            return false;\r\n        }\r\n\r\n        for (let key in obj) {\r\n            return false;\r\n        }\r\n        return true;\r\n    }\r\n};\r\n\r\nmodule.exports = Util;"
+        }
+    ]
+}

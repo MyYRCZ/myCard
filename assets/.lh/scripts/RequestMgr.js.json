@@ -1,0 +1,30 @@
+{
+    "sourceFile": "scripts/RequestMgr.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 3,
+            "patches": [
+                {
+                    "date": 1646301849072,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646302017742,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -0,0 +1,9 @@\n+let RequestMgr = {};\r\n+\r\n+RequestMgr._url = null;\r\n+\r\n+RequestMgr.httpRequest = function (domain, param, onSuccessCallBack, onErrorCallBack, onTimeOutCallBack) {\r\n+    if(!this._url) {\r\n+        \r\n+    }\r\n+}; \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646302824953,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -2,8 +2,16 @@\n \r\n RequestMgr._url = null;\r\n \r\n RequestMgr.httpRequest = function (domain, param, onSuccessCallBack, onErrorCallBack, onTimeOutCallBack) {\r\n-    if(!this._url) {\r\n-        \r\n+    if (!this._url) {\r\n+        this._url = cc.LL.urlLink;\r\n+        console.log(\"url:  \", this._url);\r\n     }\r\n+\r\n+    let url = this._url + \"/\" + domain;\r\n+\r\n+    if (param && param.p) {\r\n+        param.p[\"gameType\"] = 501;\r\n+        param.p[\"loginType\"] = 0;\r\n+    }\r\n }; \n\\ No newline at end of file\n"
+                },
+                {
+                    "date": 1646303910075,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,4 +1,6 @@\n+let Utils = require (\"./utils\");\r\n+\r\n let RequestMgr = {};\r\n \r\n RequestMgr._url = null;\r\n \r\n@@ -13,5 +15,27 @@\n     if (param && param.p) {\r\n         param.p[\"gameType\"] = 501;\r\n         param.p[\"loginType\"] = 0;\r\n     }\r\n+\r\n+    if (Utils.isEmptyObject(param)) {\r\n+        return;\r\n+    }\r\n+\r\n+    let onRequestSuccess = (data) => {\r\n+        if (Utils.isFunction(onSuccessCallBack)) {\r\n+            onSuccessCallBack(data);\r\n+        }\r\n+    }\r\n+\r\n+    let onRequestError = (data) => {\r\n+        if (Utils.isFunction(onErrorCallBack)) {\r\n+            onErrorCallBack(data);\r\n+        }\r\n+    }\r\n+\r\n+    let onRequestTimeOut = (data) => {\r\n+        if (Utils.isFunction(onTimeOutCallBack)) {\r\n+            onTimeOutCallBack(data);\r\n+        }\r\n+    }\r\n }; \n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1646301849072,
+            "name": "Commit-0",
+            "content": ""
+        }
+    ]
+}

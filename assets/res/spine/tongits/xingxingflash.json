@@ -1,0 +1,90 @@
+{
+"skeleton": {
+	"hash": "u8Ub+pMYrsnBPv/UJDXMX7Pi9EU",
+	"spine": "3.8.97",
+	"x": -15,
+	"y": -15.5,
+	"width": 30,
+	"height": 31,
+	"images": "./images/",
+	"audio": "E:/WuhanBaloot/feilvbin/局内动效/重连+winner+头像框+吃牌/images"
+},
+"bones": [
+	{ "name": "root" },
+	{ "name": "stargroup", "parent": "root" },
+	{ "name": "xingxing1", "parent": "stargroup" }
+],
+"slots": [
+	{ "name": "xingxing1", "bone": "xingxing1", "attachment": "guang_01" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"xingxing1": {
+				"guang_01": { "width": 30, "height": 31 }
+			}
+		}
+	}
+],
+"animations": {
+	"xingxing1": {
+		"slots": {
+			"xingxing1": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.1667, "color": "ffffffff" },
+					{ "time": 0.2, "color": "ffffff00" },
+					{ "time": 0.2333, "color": "ffffffff" },
+					{ "time": 0.2667, "color": "ffffff00" },
+					{ "time": 0.3, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"xingxing1": {
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.1667, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "x": 1.1, "y": 1.1, "curve": "stepped" },
+					{ "time": 0.1667, "x": 1.1, "y": 1.1 },
+					{ "time": 0.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	},
+	"xingxing2": {
+		"slots": {
+			"xingxing1": {
+				"color": [
+					{ "color": "ffffff00" },
+					{ "time": 0.0667, "color": "ffffffff" },
+					{ "time": 0.1, "color": "ffffff00" },
+					{ "time": 0.1333, "color": "ffffffff" },
+					{ "time": 0.1667, "color": "ffffff00" },
+					{ "time": 0.2, "color": "ffffffff" },
+					{ "time": 0.5, "color": "ffffff00" }
+				]
+			}
+		},
+		"bones": {
+			"xingxing1": {
+				"translate": [
+					{ "curve": "stepped" },
+					{ "time": 0.0667, "curve": "stepped" },
+					{ "time": 0.5 }
+				],
+				"scale": [
+					{ "x": 0.8, "y": 0.8, "curve": "stepped" },
+					{ "time": 0.0667, "x": 0.8, "y": 0.8 },
+					{ "time": 0.5, "x": 0, "y": 0 }
+				]
+			}
+		}
+	}
+}
+}

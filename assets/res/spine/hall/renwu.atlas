@@ -1,0 +1,180 @@
+
+renwu.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+body
+  rotate: true
+  xy: 446, 500
+  size: 217, 301
+  orig: 382, 426
+  offset: 128, 5
+  index: -1
+dabi_hou
+  rotate: false
+  xy: 752, 699
+  size: 163, 119
+  orig: 163, 119
+  offset: 0, 0
+  index: -1
+dabi_qian
+  rotate: true
+  xy: 161, 746
+  size: 72, 200
+  orig: 72, 200
+  offset: 0, 0
+  index: -1
+datui_hou
+  rotate: false
+  xy: 917, 692
+  size: 234, 126
+  orig: 234, 139
+  offset: 0, 0
+  index: -1
+datui_qian
+  rotate: true
+  xy: 1232, 439
+  size: 240, 269
+  orig: 240, 299
+  offset: 0, 0
+  index: -1
+hand_hou
+  rotate: false
+  xy: 2, 757
+  size: 83, 61
+  orig: 99, 76
+  offset: 5, 9
+  index: -1
+hand_qian
+  rotate: false
+  xy: 1153, 686
+  size: 161, 132
+  orig: 161, 132
+  offset: 0, 0
+  index: -1
+hudiejie
+  rotate: true
+  xy: 1527, 679
+  size: 139, 147
+  orig: 139, 148
+  offset: 0, 1
+  index: -1
+jiao_hou
+  rotate: true
+  xy: 479, 734
+  size: 84, 146
+  orig: 85, 149
+  offset: 0, 3
+  index: -1
+qunzi_qian
+  rotate: false
+  xy: 422, 104
+  size: 857, 333
+  orig: 857, 333
+  offset: 0, 0
+  index: -1
+sha1
+  rotate: false
+  xy: 749, 455
+  size: 481, 229
+  orig: 494, 229
+  offset: 0, 0
+  index: -1
+sha2
+  rotate: false
+  xy: 2, 287
+  size: 418, 266
+  orig: 437, 266
+  offset: 19, 0
+  index: -1
+sha3
+  rotate: false
+  xy: 1316, 681
+  size: 209, 137
+  orig: 210, 139
+  offset: 1, 2
+  index: -1
+sha_shou
+  rotate: true
+  xy: 1281, 2
+  size: 408, 525
+  orig: 435, 531
+  offset: 22, 6
+  index: -1
+tou
+  rotate: true
+  xy: 2, 578
+  size: 166, 217
+  orig: 166, 217
+  offset: 0, 0
+  index: -1
+xiaobi_hou
+  rotate: true
+  xy: 363, 738
+  size: 80, 114
+  orig: 80, 114
+  offset: 0, 0
+  index: -1
+xiaobi_qian
+  rotate: false
+  xy: 627, 719
+  size: 123, 99
+  orig: 123, 111
+  offset: 0, 0
+  index: -1
+xiaotui_hou
+  rotate: true
+  xy: 1676, 666
+  size: 152, 245
+  orig: 154, 245
+  offset: 2, 0
+  index: -1
+xiaotui_qian
+  rotate: true
+  xy: 1503, 412
+  size: 252, 424
+  orig: 252, 424
+  offset: 0, 0
+  index: -1
+xiong
+  rotate: true
+  xy: 221, 555
+  size: 181, 223
+  orig: 198, 223
+  offset: 0, 0
+  index: -1
+xiong_shipin
+  rotate: false
+  xy: 87, 749
+  size: 72, 69
+  orig: 72, 69
+  offset: 0, 0
+  index: -1
+
+renwu2.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hair_hou
+  rotate: true
+  xy: 2, 576
+  size: 411, 637
+  orig: 415, 796
+  offset: 4, 0
+  index: -1
+hair_qian
+  rotate: true
+  xy: 2, 2
+  size: 516, 1140
+  orig: 516, 1140
+  offset: 0, 0
+  index: -1
+qunzi_hou
+  rotate: false
+  xy: 641, 520
+  size: 986, 467
+  orig: 986, 564
+  offset: 0, 61
+  index: -1

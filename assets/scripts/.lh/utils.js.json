@@ -1,0 +1,22 @@
+{
+    "sourceFile": "utils.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1646301199584,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646301224061,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -3,5 +3,7 @@\n         if (!!callback && typeof callback === \"function\") {\r\n             callback.apply(null, Array.prototype.slice.call(arguments, 1));\r\n         }\r\n     } \r\n-};\n\\ No newline at end of file\n+};\r\n+\r\n+module.exports = Util;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1646301199584,
+            "name": "Commit-0",
+            "content": "var Util = {\r\n    invokeCallback: function (callback) {\r\n        if (!!callback && typeof callback === \"function\") {\r\n            callback.apply(null, Array.prototype.slice.call(arguments, 1));\r\n        }\r\n    } \r\n};"
+        }
+    ]
+}

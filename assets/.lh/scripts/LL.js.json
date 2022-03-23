@@ -1,0 +1,22 @@
+{
+    "sourceFile": "scripts/LL.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 1,
+            "patches": [
+                {
+                    "date": 1646302239597,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                },
+                {
+                    "date": 1646302286031,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n@@ -1,3 +1,5 @@\n let LL = {\r\n     urlLink: \"47.105.196.119:56789\"\r\n-};\n\\ No newline at end of file\n+};\r\n+\r\n+cc.LL = module.exports = LL;\n\\ No newline at end of file\n"
+                }
+            ],
+            "date": 1646302239597,
+            "name": "Commit-0",
+            "content": "let LL = {\r\n    urlLink: \"47.105.196.119:56789\"\r\n};"
+        }
+    ]
+}

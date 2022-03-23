@@ -1,0 +1,34 @@
+
+RewardEffect.png
+size: 2048,1024
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+XING1
+  rotate: false
+  xy: 1319, 124
+  size: 9, 9
+  orig: 11, 11
+  offset: 1, 1
+  index: -1
+XING2
+  rotate: false
+  xy: 1284, 103
+  size: 33, 30
+  orig: 34, 32
+  offset: 1, 1
+  index: -1
+guangquan
+  rotate: false
+  xy: 1284, 135
+  size: 587, 587
+  orig: 597, 597
+  offset: 5, 5
+  index: -1
+guangshu
+  rotate: false
+  xy: 2, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: -1

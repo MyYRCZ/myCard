@@ -1,0 +1,13 @@
+
+xingxingflash.png
+size: 32,32
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guang_01
+  rotate: false
+  xy: 2, 2
+  size: 27, 27
+  orig: 30, 31
+  offset: 2, 2
+  index: -1

@@ -1,0 +1,59 @@
+{
+"skeleton": {
+	"hash": "sxDxNbOtj+xCsUFqhB7hjpv1IqY",
+	"spine": "3.8.97",
+	"x": -48.16,
+	"y": -40.02,
+	"width": 96,
+	"height": 96,
+	"images": "./image/",
+	"audio": ""
+},
+"bones": [
+	{ "name": "root", "y": 7.28 },
+	{ "name": "jiantou", "parent": "root" }
+],
+"slots": [
+	{ "name": "jiantou", "bone": "jiantou", "attachment": "jiantou" }
+],
+"skins": [
+	{
+		"name": "default",
+		"attachments": {
+			"jiantou": {
+				"jiantou": { "x": -0.16, "y": 0.71, "width": 96, "height": 96 }
+			}
+		}
+	}
+],
+"animations": {
+	"animation": {
+		"slots": {
+			"jiantou": {
+				"color": [
+					{ "color": "ffffffde" },
+					{ "time": 0.5667, "color": "ffffffff", "curve": "stepped" },
+					{ "time": 0.8333, "color": "ffffffff" },
+					{ "time": 2, "color": "ffffffde" }
+				]
+			}
+		},
+		"bones": {
+			"jiantou": {
+				"translate": [
+					{},
+					{ "time": 0.5667, "y": -9.75 },
+					{ "time": 0.8333, "y": -5.92 },
+					{ "time": 2 }
+				],
+				"scale": [
+					{ "curve": "stepped" },
+					{ "time": 0.5667, "curve": "stepped" },
+					{ "time": 0.8333, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			}
+		}
+	}
+}
+}

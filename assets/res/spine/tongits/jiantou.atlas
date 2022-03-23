@@ -1,0 +1,13 @@
+
+jiantou.png
+size: 64,64
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+jiantou
+  rotate: false
+  xy: 2, 2
+  size: 54, 54
+  orig: 96, 96
+  offset: 21, 21
+  index: -1

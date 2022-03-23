@@ -1,0 +1,18 @@
+{
+    "sourceFile": "scripts/TestHttpMgr.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1646301762110,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1646301762110,
+            "name": "Commit-0",
+            "content": "let Utils = require(\"./utils\");\r\n\r\nconst httpResponseState = {\r\n    success: 0,\r\n    error:   1,\r\n    timeOut: 2\r\n};\r\n\r\nlet testHttpMgr = {};\r\n\r\ntestHttpMgr.httpRequest = function (domain, param, callback) {\r\n    \r\n};\r\n"
+        }
+    ]
+}
