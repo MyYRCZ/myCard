@@ -181,55 +181,67 @@ cc.Class({
 
     //--------------------------------------------tongits-------------------------------------------
 
-    //
+    //发牌
     onDealCard: function (data) {
 
     },
 
+    //抓牌
     onGetCard: function (data) {
 
     },
 
+    //打牌
     onDumpCard: function (data) {
 
     },
 
+    //亮牌
     onDrop: function (data) {
 
     },
 
+    //捡牌(组合)
     onPickUp: function (data) {
 
     },
 
+    //补牌
     onFillMeld: function (data) {
 
     },
 
+    //比牌
     onFight: function (data) {
 
     },
 
+    //挑战
     onChallenge: function (data) {
 
     },
 
+    //弃牌
     onFold: function (data) {
 
     },
 
+    //托管
     onTrust: function (data) {
 
     },
 
+    //取消托管
     onCancelTrust: function (data) {
 
     },
 
+    //游戏结算
     onGameResult: function (data) {
 
     },
 
+    //结束
     onSettle: function (data) {
 
     },
