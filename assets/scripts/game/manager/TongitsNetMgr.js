@@ -19,7 +19,33 @@ tongitsNetMgr.sendMsg = function (route, params, callback) {
 };
 
 //------------------------------游戏操作(request)------------------------------
+// {
+//     cmd: int,               // 游戏动作
+//     params: {               // 命令不同，参数不同
+//     /*
+//         ACT_DUMP: 1,        // 打牌 params = {card: int}
+//         ACT_GET_CARD: 2,    // 抓牌 params = {};
+//         ACT_PICK_UP: 3,     // 捡牌 params = {myCards: [int]}
+//         ACT_FILL_MELD: 4,   // 填充亮出的融合牌 params = {toSeat: int, droppedId: int, cards: [int]}
+//         ACT_DROP: 5,        // 亮牌 params = {cards: [int]}
+//         ACT_FIGHT: 6,       // 比牌 params = {}
+//         ACT_CHALLENGE: 7,   // 挑战比牌 params = {}
+//         ACT_TRUST: 8,       // 托管(暂时没用) params = {}
+//         ACT_CANCEL_TRUST: 9,// 解除托管 params = {}
+//     
+//     }
+// }
 
+tongitsNetMgr.doGameAction = function (cmd, param, callback) {
+    var route = "game.gameHandler.doGameAction";
+    let params = {
+        cmd: cmd,
+        params: param
+    };
+    this.sendMsg(route, params, (data) => {
+        utils.invokeCallback(callback, data);
+    });
+};
 
 
 
@@ -28,6 +54,7 @@ tongitsNetMgr.sendMsg = function (route, params, callback) {
 //发牌通知
 tongitsNetMgr.onDealCard = function (data) {
     console.log("发牌通知--tongitsNetMgr.onDealCard", data);
+    cc.LL.eventUtil.eventEmit(cc.VV.eventConfig.EVENT_NET.EVENT_TONGITS.onDealCard, data);
 };
 
 //抓牌通知

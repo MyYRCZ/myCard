@@ -34,6 +34,25 @@ module.exports = {
             USER_DIAMOND              : "UserDiamond",
 
             JOIN_ROOM: "join_room"                //加入房间(只加入金币场)
+        },
+
+        EVENT_TONGITS: {
+            //网络层监听
+            onDealCard:      "onDealCard",          //发牌
+            onGetCard:       "onGetCard",           //抓牌
+            onDumpCard:      "onDumpCard",          //打牌
+            onDrop:          "onDrop",              //亮牌
+            onPickUp:        "onPickUp",            //捡牌通知(组合)
+            onFillMeld:      "onFillMeld",          //补牌
+            onFight:         "onFight",             //比牌
+            onChallenge:     "onChallenge",         //挑战
+            onFold:          "onFold",              //弃牌
+            onTrust:         "onTrust",             //托管
+            onCancelTrust:   "onCancelTrust",       //取消托管
+            onGameResult:    "onGameResult",        //游戏结算
+            onNoticeByUids:  "onNoticeByUids",      //跑马灯
+            onNotice:        "onNotice",            //跑马灯
+            onSettle:        "onSettle",            //结束
         }
     },     
 }
