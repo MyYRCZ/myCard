@@ -5312,9 +5312,6 @@
     "_components": [
       {
         "__id__": 140
-      },
-      {
-        "__id__": 141
       }
     ],
     "_prefab": null,
@@ -5374,15 +5371,5 @@
     },
     "_enabled": true,
     "_id": "d5UUU3pXFMr6MU8nOatN6S"
-  },
-  {
-    "__type__": "dd2a59JPXJGiqgYQzq/TJNr",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 139
-    },
-    "_enabled": true,
-    "_id": "70BCfAoHhAPJRsbEpvHgND"
   }
 ]

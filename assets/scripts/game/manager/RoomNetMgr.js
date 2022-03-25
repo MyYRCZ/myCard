@@ -40,6 +40,25 @@ roomNetMgr.roomJoin = function (roomType, subKey, roomId, callback) {
     });
 };
 
+roomNetMgr.roomGetInfo = function (roomType, roomId, callback) {
+    var route = roomType + ".roomHandler.getInfo";
+    let params = {
+        roomId: roomId.toString(),
+    };
+
+    this.sendMsg(route, params, (data, status) => {
+        if (status === 0) {
+            utils.invokeCallback(callback, data); 
+        } else {
+            //提示
+            // let errorStr = cc.VV.gameConfig.getErrorStr(status.toString());
+            // cc.vv.game_event_interface.showMsgTips(errorStr);
+            //回调做错误处理
+            utils.invokeCallback(callback, data);
+        }
+    });
+};
+
 
 //-----------------------------服务器推送消息协议(push)------------------------------
 //房主钻石不足
@@ -50,6 +69,7 @@ roomNetMgr.onCreatorDiamondNotEnough = function (data) {
 //坐下通知[通]
 roomNetMgr.onSitDown = function (data) {
     console.log("坐下", data);
+    cc.LL.eventUtil.eventEmit(cc.VV.eventConfig.EVENT_NET.EVENT_ROOM.SIT_DOWN, data);
 };
 
 //换座通知[通]

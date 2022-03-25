@@ -2,6 +2,7 @@
 'use strict'
 
 const utils = require("../../common/utils/utils");
+const VV = require("../../VV");
 
 cc.Class({
     extends: cc.Component,
@@ -31,6 +32,9 @@ cc.Class({
         let roomType = cc.VV.gameConfig.ROOM_TYPE.COIN_ROOM;
         cc.VV.roomNetMgr.roomJoin(roomType, subKey, null, (data) => {
             //TODO 存储房间信息
+            console.log("***********", cc.VV.roomData);
+            cc.VV.roomData.setRoomDataForKey(cc.VV.dataKey.roomKey.roomId, data.roomId);
+            cc.VV.roomData.setRoomDataForKey(cc.VV.dataKey.roomKey.roomType, roomType);
 
             utils.invokeCallback(callback, data);
             //切换场景(在场景内申请roomInfo)

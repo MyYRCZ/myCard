@@ -1,10 +1,7 @@
-//游戏数据管理类
-
-'use strict'
-
 const roomKey = {
     subKey:               "subKey",               //房间子密钥
     roomType:             "roomType",             //房间类型
+    roomId:               "roomId",               //房间ID 
     gameType:             "gameType",             //游戏类型 
     minGameScore:         "minGameScore",         //游戏的最少分数
     maxGameScore:         "maxGameScore",         //游戏的最大分数  -1:无效值
@@ -44,14 +41,9 @@ const userInfoKey = {
     bQuit:                "bQuit"                 //是否退出
 };
 
-let roomInfoData = function () {
-    this.resetData();
+const dataKey = {
+    roomKey: roomKey,
+    userInfoKey: userInfoKey
 };
 
-let gameData = roomInfoData.prototype;
-let gameInstance = null;
-
-gameData.resetData = function () {
-    this.roomData = {};
-    this.userInfoData = {};
-};
+module.exports = dataKey;

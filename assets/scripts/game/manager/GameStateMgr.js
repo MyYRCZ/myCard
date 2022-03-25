@@ -9,7 +9,9 @@ const GAME_STATE = {
 
 let gameStateMgr = {};
 gameStateMgr._isGameHide = false;
-gameStateMgr.gameState = GAME_STATE.GS_WAITING;
+// gameStateMgr.gameState = GAME_STATE.GS_WAITING;
+// console.log("********", cc.VV.gameEnum.GAME_STATE);
+// gameStateMgr.gameState = cc.VV.gameEnum.GAME_STATE.GS_WAITING;
 
 gameStateMgr.getIsGameHide = function () {
     return this._isGameHide;

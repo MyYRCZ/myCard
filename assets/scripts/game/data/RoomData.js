@@ -2,18 +2,18 @@
 'use strict'
 
 //俱乐部等级
-const CLUB_LEVEL = {
-    NORMAL_CLUB: 0,
-    HIGH_CLUB:   1,
-    NO_CLUB:     2
-};
+// const CLUB_LEVEL = {
+//     NORMAL_CLUB: 0,
+//     HIGH_CLUB:   1,
+//     NO_CLUB:     2
+// };
 
-function PlayerInfo (info) {
-    if (!(this instanceof PlayerInfo)) {
-        return new PlayerInfo(info);
-    }
+// function PlayerInfo (info) {
+//     if (!(this instanceof PlayerInfo)) {
+//         return new PlayerInfo(info);
+//     }
 
-    this.info = info;
+//     this.info = info;
 
     // this.userId     = info.userId;           //用户ID
     // this.nickname   = info.nickname;         //用户昵称
@@ -28,13 +28,13 @@ function PlayerInfo (info) {
     // this.bReady     = info.bReady || true;   //是否已准备
     // this.bGame      = info.bGame || true;    //是否游戏中
     // this.bQuit      = info.bQuit || true;    //是否退出
-};
+// };
 
-function RoomInfo (roomInfo) {
-    if (!(this instanceof roomInfo)) {
-        return new RoomInfo(roomInfo);
-    }
-    this.roomInfo = roomInfo;
+// function RoomInfo (roomInfo) {
+//     if (!(this instanceof roomInfo)) {
+//         return new RoomInfo(roomInfo);
+//     }
+//     this.roomInfo = roomInfo;
 
     // //初始化座位  0:站起
     // this.mySeat        = 0;
@@ -70,14 +70,63 @@ function RoomInfo (roomInfo) {
     // this.mStarted           = roomInfo.started;           //房间是否已开始
 
     // this.mSettleData        = null;                       //结算数据
+// };
+
+// PlayerInfo.prototype.setGameInfoForKey = function (key, value) {
+//     this.roomInfo[key] = value;
+// };
+
+// PlayerInfo.prototype.getGameInfoForKey = function (key) {
+//     return this.roomInfo[key];
+// };
+
+let roomInfoData = function () {
+    this.resetData();
 };
 
-PlayerInfo.prototype.setGameInfoForKey = function (key, value) {
-    this.roomInfo[key] = value;
+let gameData = roomInfoData.prototype;
+let gameInstance = null;
+
+gameData.resetData = function () {
+    this.roomData = {};
+    this.userInfoData = {};
 };
 
-PlayerInfo.prototype.getGameInfoForKey = function (key) {
-    return this.roomInfo[key];
+gameData.setRoomData = function (data) {
+    for (let key in data) {
+        let value = data[key];
+        this.setRoomDataForKey(key, value);
+    }
+};
+
+gameData.resetUserInfoData = function () {
+    this.userInfoData = {};
+};
+
+gameData.setRoomDataForKey = function (key, value) {
+    this.roomData[key] = value;
+};
+
+gameData.getRoomData = function () {
+    return this.roomData;
+};
+
+gameData.getRoomDataForKey = function (key) {
+    return this.roomData[key];
+};
+
+module.exports = {
+    Instance: function () {
+        if (!gameInstance) {
+            gameInstance = new roomInfoData();
+        }
+        return gameInstance;
+    },
+    Destroy: function () {
+        if (gameInstance) {
+            gameInstance.destroy();
+        }
+    },
 };
 
 
