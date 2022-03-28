@@ -6,6 +6,7 @@ const timerUtil = require("./common/utils/TimerUtil");
 const nodeUtil = require("./common/utils/NodeUtil");
 const componentUtil = require("./common/utils/ComponentUtil");
 const eventUtil = require("./common/utils/EventUtil");
+const eventUiUtil = require("./common/utils/EventUiUtil");
 const localStorageUtil = require("./common/utils/LocalStorageUtil");
 const netPomelo = require("./common/net/NetPomelo");
 
@@ -26,6 +27,7 @@ let LL = {
     nodeUtil: nodeUtil,
     componentUtil: componentUtil,
     eventUtil: eventUtil,
+    eventUiUtil: eventUiUtil,
     localStorageUtil: localStorageUtil,
     netPomelo: netPomelo,
 

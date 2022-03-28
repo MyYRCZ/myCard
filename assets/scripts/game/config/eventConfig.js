@@ -54,5 +54,21 @@ module.exports = {
             onNotice:        "onNotice",            //跑马灯
             onSettle:        "onSettle",            //结束
         }
-    },     
+    }, 
+    
+    //view层消息定义
+    EVENT_VIEW: {
+        VIEW_LOGIN: {},
+
+        VIEW_HALL: {}, 
+
+        VIEW_ROOM: {
+            ROOM_INFO: "roomInfo",   //key:seat  value: playerInfo
+            ROOM_UPDATE_SEAT: "roomUpdateSeat",      //更新房间座位信息
+        },
+
+        VIEW_TONGITS: {
+            TONGITS_DEAL_CARD: "tongits_DealCard",    //发牌 usersCardInfo: [{seat: int,cards: [int]}] 如果是自己显示明牌;如果seat不是自己显示牌背，数组中都是-1
+        }
+    }
 }

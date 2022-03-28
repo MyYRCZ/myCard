@@ -81,7 +81,10 @@ cc.Class({
 
         this.getRoomInfo(roomType, roomId, (bSuccess) => {
             if (bSuccess) {
+                //TODO 是否有保存的roomInfo
 
+                this.initGameState(isConnectAgain);
+                
             } else {
                 //申请roomInfo失败
             }
@@ -95,25 +98,59 @@ cc.Class({
             console.log("getRoomInfo = ", data);
             if (data.result !== 0) {
                 utils.invokeCallback(callback, data);
+                return;
             } 
 
             //存储房间数据
             cc.VV.roomData.resetUserInfoData();
             cc.VV.roomData.setRoomData(data.roomInfo);
 
+            //设置房间ID
+            cc.VV.roomData.setRoomDataForKey(cc.VV.dataKey.roomKey.roomId, roomId);
+
+            //设置用户信息
+            let players = data.roomInfo.players;
+            for (let key in players) {
+                let element = players[key];
+                cc.VV.roomData.setPlayerInfo(element);
+            }
+
             //存储游戏信息
-            if (data.gameInfo) {
-                cc.VV.tongitsData.clearGame();
-                cc.VV.tongitsData.setGameInfo(data.gameInfo);
-            } else {
-                //模拟游戏数据初始化
-                cc.VV.tongitsData.clearGame();
+            // if (data.gameInfo) {
+            //     cc.VV.tongitsData.clearGame();
+            //     cc.VV.tongitsData.setGameInfo(data.gameInfo);
+            // } else {
+            //     //模拟游戏数据初始化
+            //     cc.VV.tongitsData.clearGame();
                 
 
-            }
-            console.log("roomData === ", cc.VV.roomData.getRoomData());
-            console.log("gameInfo === ", data.gameInfo);
+            // }
+
+
+            utils.invokeCallback(callback, data);
         });
+    },
+
+    initGameState: function(isConnectAgain) {
+        let roomInfo = cc.VV.roomData.getRoomData();
+        if (roomInfo) {
+            //TODO  判断是不是自建房
+            //end
+
+            //通知界面更新
+            // let players = cc.VV.roomData.getPlayers();
+            // let startData = cc.VV.roomData.getGameStartData();
+            // cc.LL.eventUiUtil.emitEvent(cc.VV.eventConfig.EVENT_VIEW.VIEW_ROOM.ROOM_INFO, players, startData, roomInfo);
+
+            let roomPlayers = cc.VV.roomData.getAllPlayerInfo();
+            let startData = cc.VV.roomData.getGameStartData();
+            // for (let key in roomPlayers) {
+            //     let playerInfo = roomPlayers[key];
+            //     // let uiSeat = cc.VV.roomData.getPlayerSeatToUiSeat(playerInfo.seat);
+            //     let seat = playerInfo.seat;
+            // }
+            cc.LL.eventUiUtil.emitEvent(cc.VV.eventConfig.EVENT_VIEW.VIEW_ROOM.ROOM_INFO, roomPlayers, startData, roomInfo);
+        }
     },
 
     //--------------------------------------------room-------------------------------------------
@@ -177,6 +214,8 @@ cc.Class({
     //发牌
     onDealCard: function (data) {
 
+        //ui通知
+        cc.LL.eventUiUtil.emitEvent(cc.VV.eventConfig.EVENT_VIEW.VIEW_TONGITS.TONGITS_DEAL_CARD, data.usersCardInfo, data.leftCardCount);
     },
 
     //抓牌
