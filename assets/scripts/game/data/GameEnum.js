@@ -48,10 +48,18 @@ const SHOP_TYPE = {
     PACKAGE:          2         //礼包
 };
 
+//排序类型
+const SORT_TYPE = {
+    TYPE_COLOR:      0,         //颜色
+    TYPE_BEST:       1,         //最优
+    TYPE_WEIGHT:     2          //权重
+};
+
 module.exports = {
     GAME_ACTION:      GAME_ACTION,
     GAME_STATE:       GAME_STATE,
     FIGHT_STATE:      FIGHT_STATE,
     STAND_UP_REASON:  STAND_UP_REASON,
-    SHOP_TYPE:        SHOP_TYPE
+    SHOP_TYPE:        SHOP_TYPE,
+    SORT_TYPE:        SORT_TYPE
 };

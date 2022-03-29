@@ -4,7 +4,8 @@ cc.Class({
 
     properties: {
         viewPos: 0,
-        changeColorTime: 3
+        changeColorTime: 3,
+        avatarAtlas: cc.SpriteAtlas,
     },
 
     onLoad () {
@@ -19,6 +20,9 @@ cc.Class({
             Label: [
                 "seat/label_name",
                 "seat/coin_bg/label_coin"
+            ],
+            Sprite: [
+                "seat/avatar/avatar_mask/sprite_avatar"
             ]
         });
     },
@@ -42,7 +46,7 @@ cc.Class({
             this.Label_label_name.string = this.userInfo.nickname;
             this.Label_label_coin.string = this.userInfo.score;
         } else {
-
+            this.Sprite_sprite_avatar.spriteFrame = this.avatarAtlas.getSpriteFrame("touxiang_moren");
         }
     },
 

@@ -6,6 +6,12 @@ const gameStateMgr     = require("./game/manager/GameStateMgr");
 const dataKey          = require("./game/data/DataKey");
 const eventViewConfig  = require("./game/config/EventViewConfig");
 
+//牌算法
+const poker_suit       = require("./game/algorithm/poker_suit");
+const poker_const      = require("./game/algorithm/poker_const");
+const poker_util       = require("./game/algorithm/poker_util");
+const pokerMgr         = require ("./game/algorithm/poker_mgr");
+
 let VV = {
     num: 4,    
     eventConfig:      eventConfig,
@@ -15,6 +21,11 @@ let VV = {
     gameEnum:         gameEnum,
     dataKey:          dataKey,
     eventViewConfig:  eventViewConfig,
+
+    poker_suit:       poker_suit,
+    poker_const:      poker_const,
+    poker_util:       poker_util,
+    pokerMgr:         pokerMgr,
 
     init: function () {
         this.testHttpMgr        = require("./game/manager/TestHttpMgr");

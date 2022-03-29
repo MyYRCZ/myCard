@@ -161,7 +161,8 @@ cc.Class({
 
     //坐下
     onSitDown: function (data) {
-
+        console.log("坐下通知(tongitsScene)", data);
+        cc.LL.eventUiUtil.emitEvent(cc.VV.eventConfig.EVENT_VIEW.VIEW_ROOM.ROOM_UPDATE_SEAT, data.userInfo.seat, data.userInfo);
     },
 
     //换坐
