@@ -9,6 +9,8 @@ cc.Class({
         dealCardDur: 0.2,
         pokerSpaceX: -50,
 
+        cardYOffset: 25,
+
         isMovingCard: null,
         isTouch: false,
         //托管状态
@@ -32,7 +34,7 @@ cc.Class({
         this.hand_card.on(cc.Node.EventType.TOUCH_START, this.onSelectStart, this);
         this.hand_card.on(cc.Node.EventType.TOUCH_MOVE, this.onSelectMove, this);
         this.hand_card.on(cc.Node.EventType.TOUCH_CANCEL, this.onSelectCancel, this);
-        this.hand_card.on(cc.Node.EventType.TOUCH_END, this.onSelectEnd, this);
+        this.hand_card.on(cc.Node.EventType.TOUCH_END, this.onSelectCancel, this);
     },
 
     onDestroy () {
@@ -41,7 +43,7 @@ cc.Class({
         this.hand_card.off(cc.Node.EventType.TOUCH_START, this.onSelectStart, this);
         this.hand_card.off(cc.Node.EventType.TOUCH_MOVE, this.onSelectMove, this);
         this.hand_card.off(cc.Node.EventType.TOUCH_CANCEL, this.onSelectCancel, this);
-        this.hand_card.off(cc.Node.EventType.TOUCH_END, this.onSelectEnd, this);
+        this.hand_card.off(cc.Node.EventType.TOUCH_END, this.onSelectCancel, this);
     },
 
     start () {
@@ -129,6 +131,12 @@ cc.Class({
             .start();
     },
 
+    onReset () {
+        this.isPressDown = false;
+        this.startIndex = -1;
+        this.endIndex = -1;
+    },
+
     onSelectStart (event) {
         if (this.hand_card.children.length <= 0) return;
         this.isTouch = true;
@@ -140,24 +148,74 @@ cc.Class({
         let mousePos = this.hand_card.convertToNodeSpaceAR(event.getLocation());
 
         this.startIndex = this.getNodeIndexByPosX(mousePos.x);
-        console.log("Index = ", this.startIndex);
+        // console.log("Index = ", this.startIndex);
     },
 
     onSelectMove (event) {
+        if (this.isPressDown && this.card_single.children.length <= 0) return;
 
+        //鼠标坐标转成相对于当前节点的坐标
+        let mousePos = this.hand_card.convertToNodeSpaceAR(event.getLocation());
+        if (!this.checkValidArea(mousePos.x, mousePos.y)) {
+            return;
+        }
+
+        this.endIndex = this.getNodeIndexByPosX(mousePos.x);
+        // console.log("endIndex === ", this.endIndex);
+        if (this.endIndex === -1) return;
+
+        if (this.startIndex >= 0 && this.endIndex >= 0) {
+            let tuple = this.minOrMax(this.startIndex, this.endIndex);
+            this.targetNodes = [];
+            let nodes = this.card_single.children;
+            for (let i = 0; i < nodes.length; i++) {
+                const element = nodes[i];
+                if (i <= tuple.max && i >= tuple.min) {
+                    this.targetNodes.push(element);
+                }
+            }
+            this.onSelectCard(this.targetNodes);
+        }
     },
 
     onSelectCancel (event) {
-        
+        if (!this.isPressDown && this.card_single.children.length <= 0) return;
+
+        let mousePos = this.hand_card.convertToNodeSpaceAR(event.getLocation());
+
+        //在区域内将区域内节点加入
+        if (this.checkValidArea(mousePos.x, mousePos.y)) {
+            this.targetNodes = [];
+            this.endIndex = this.getNodeIndexByPosX(mousePos.x);
+            if (this.startIndex >= 0 && this.endIndex >= 0) {
+                let tuple = this.minOrMax(this.startIndex, this.endIndex);
+                let nodes = this.card_single.children;
+                for (let i = 0; i < nodes.length; i++) {
+                    const element = nodes[i];
+                    if (i <= tuple.max && i >= tuple.min) {
+                        this.targetNodes.push(element);
+                    }
+                }
+            }
+        }
+
+        let res = this.dealChooseCardEnd(this.targetNodes || []);
+        console.log("allSelectCard === ", this.targetNodes);
+        if (res) {
+            this.selectCardEnd(res);
+        } else {
+            this.selectCardEnd(this.targetNodes);
+        }
+        this.onReset();
     },
 
     onSelectEnd (event) {
 
     },
 
+    //通过触摸坐标的X获得牌的Index(从左往右0,1,2...)
     getNodeIndexByPosX(posX) {
         let nodes = this.card_single.children;
-        console.log("this.hand_card.children = ", nodes);
         if (nodes.length <= 0) {
             console.warn("getNodeIndexByPosX no children");
             return -1;
@@ -176,7 +234,101 @@ cc.Class({
             }
         }
         return -1;
-    }
+    },
+    
+    //检查(x, y)是否在有效范围内
+    checkValidArea(x, y) {
+        let nodes = this.card_single.children;
+        if (nodes.length <= 0) {
+            return false;
+        }
+
+        let checkValidAreaX = (posX) => {
+            let areaLeft = nodes[0].x - this.cardWidth / 2;
+            let areaRight = nodes[nodes.length - 1].x + this.cardWidth / 2;
+            return posX <= areaRight && posX >= areaLeft;
+        };
+
+        let checkValidAreaY = (posY) => {
+            let areaTop = this.cardHeight / 2;
+            let areaBottom = -(this.cardHeight / 2);
+            return posY <= areaTop && posY >= areaBottom;
+        };
+
+        return checkValidAreaX(x) && checkValidAreaY(y);
+    },
+
+    //选择牌
+    onSelectCard (nodes) {
+        let children = this.card_single.children;
+        for (let index = 0; index < children.length; index++) {
+            const child = children[index];
+            if (nodes.indexOf(child) >= 0) {
+                child.emit("showMask", true);
+            } else {
+                child.emit("showMask", false);
+            }
+        }
+    },
+
+    minOrMax (x, y) {
+        if (x <= y) {
+            return {min: x, max: y};
+        }
+        return {min: y, max: x};
+    },
+
+    dealChooseCardEnd (nodes) {
+        if (nodes.length < 6) return;
+
+        let pokerArr = [], downNum = 0, upNum = 0;
+        for (let index = 0; index < nodes.length; index++) {
+            const element = nodes[index];
+            pokerArr.push(element.pokerIndex);
+        }
+    },
+
+    selectCardEnd (nodes) {
+        let children = this.card_single.children;
+        for (let index = 0; index < children.length; index++) {
+            const child = children[index];
+            child.emit("showMask", false);
+            if (nodes.indexOf(child) >= 0) {
+                this.onClickCard(child);
+            }
+        }
+
+        if (!nodes || nodes.length <= 1) return;
+
+        //TODO 获取最优牌
+        // let childrenNum = this.getAllSelectCardNum();
+    },
+
+    //点击牌牌弹出
+    onClickCard (card) {
+        if (card.y >= this.cardYOffset) {
+            card.y = 0;
+        } else {
+            card.y = this.cardYOffset;
+        }
+    },
+
+    //获取牌的数据
+    getAllSelectCardNum () {
+        let nodes = this.card_single.children;
+        let cardNum = [];
+        nodes.forEach((card) => {
+            if (card.y >= this.cardYOffset) {
+                cardNum.push(this.getCardNameByCard(card));
+            }
+        });
+
+        return cardNum;
+    },
+
+    getCardNameByCard (card) {
+        return +card.name;
+    },
 
     ////给牌添加触摸事件
     // cardAddTouchEvent (card, cardNum) {

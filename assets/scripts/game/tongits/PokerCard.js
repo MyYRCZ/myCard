@@ -12,6 +12,7 @@ cc.Class({
 
     onLoad () {
         this.node.on("init", this.init, this);
+        this.node.on("showMask", this.showMask, this);
 
 
         cc.LL.nodeUtil.addTargetNode(this, this.node, [
@@ -49,7 +50,9 @@ cc.Class({
             name = "small_" + name;
         }
         return name;
+    },
+
+    showMask (state) {
+        this.mask.active = state;
     }
-
-
 });
