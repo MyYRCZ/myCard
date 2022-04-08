@@ -67,6 +67,33 @@ var timerUtil = {
             callback();
         }
         this.setTimeOutForever(time, targetNode, callback);
+    },
+
+    setTimeOutRepeat: function(time, num, targetNode, callback, successCall) {
+        if (targetNode) {
+            let action = cc.tween(targetNode)
+                            .delay(time)
+                            .call(() => {
+                                if (callback) {
+                                    callback();
+                                }
+                            })
+
+            let act = cc.tween(targetNode)
+                        .repeat(num, action)
+                        .delay(1)
+                        .call(() => {
+                            if (successCall) {
+                                successCall();
+                            }
+                        })
+                        .start()
+
+            return act
+        } else {
+            console.warn("setTimeOut targetNode is null");
+            return;
+        }
     }
 };
 
