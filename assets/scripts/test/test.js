@@ -7,47 +7,70 @@ cc.Class({
         cardPrefab: cc.Prefab
     },
 
-    onLoad () {
+    onLoad() {
         cc.LL.nodeUtil.addButtonOnClickWithArray(this, this.node, [
             "bg/btn_start"
         ], this.onBtnCallBack.bind(this));
 
         cc.LL.nodeUtil.addTargetNode(this, this.node, [
-            "title"
+            "title1",
+            "title2",
+            "title3",
+            "title4",
         ]);
     },
 
-    onBtnCallBack (event) {
+    onBtnCallBack(event) {
         if (event.node.name === "btn_start") {
-            this.onStart();
+            this.onStart(this.title1.getChildByName("title"));
+            this.onStart(this.title2.getChildByName("title"));
+            this.onStart(this.title3.getChildByName("title"));
+            this.onStart(this.title4.getChildByName("title"));
         }
     },
 
-    onStart () {
-        this.title.removeAllChildren();
-        cc.LL.timerUtil.setTimeOutRepeat(0.1, 12, this.title, () => {
+    onStart(testNode) {
+        testNode.removeAllChildren();
+        testNode.parent.getChildByName("bg").active = false;
+        testNode.parent.getChildByName("bg").getChildByName("triming_label").active = false;
+        testNode.parent.getChildByName("bg").getChildByName("trim_success_label").active = false;
+        cc.LL.timerUtil.setTimeOutRepeat(0.1, 12, testNode, () => {
             let item = cc.instantiate(this.cardPrefab);
-            this.title.addChild(item);
+            testNode.addChild(item);
         }, () => {
             console.log("完成");
-            let children = this.title.children;
-            let num = 0;
-            cc.LL.timerUtil.setTimeOutRepeat(0.15, children.length, this.title, () => {
-                children[num].emit("startBeat");
-                num++;
-            }, () => {
-
-            });
+            testNode.parent.getChildByName("bg").active = true;
+            testNode.parent.getChildByName("bg").getChildByName("triming_label").active = true;
+            this.beatAnim(testNode, 5);
         });
     },
 
-    titleSetLayout () {
-        // this.layout = this.title.getComponent(cc.Layout).spacing = 
+    beatAnim(testNode, limitNum) {
+        if (limitNum <= 0) {
+            testNode.parent.getChildByName("bg").getChildByName("triming_label").active = false;
+            testNode.parent.getChildByName("bg").getChildByName("trim_success_label").active = true;
+            return;
+        }
+
+        let children = testNode.children;
+        let num = 0;
+        cc.LL.timerUtil.setTimeOutRepeat(0.15, children.length, testNode, () => {
+            children[num].emit("startBeat");
+            num++;
+        }, () => {
+            console.log("动作完成");
+            limitNum--;
+            return this.beatAnim(testNode, limitNum);
+        });
+    },
+
+    test1(num) {
+        console.log(num);
     },
 
 
 
-    start () {
+    start() {
 
     },
 });
